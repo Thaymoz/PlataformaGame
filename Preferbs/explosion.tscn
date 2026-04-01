@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://jj87havqkcpg"]
+
+[ext_resource type="Texture2D" uid="uid://be5gj31wfg5f" path="res://Assets da aula/Mini FX, Items & UI/Effects/Explosion_Poof (16 x 16).png" id="1_8udvn"]
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="2_groxq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e02i"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq7q8"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtjh7"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlmmj"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxeff"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsy3t"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltwsh"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bddk"]
+atlas = ExtResource("1_8udvn")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_btpu3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e02i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq7q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtjh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlmmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxeff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsy3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltwsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bddk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="explosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_btpu3")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+script = ExtResource("2_groxq")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

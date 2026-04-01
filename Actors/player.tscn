@@ -1,0 +1,136 @@
+[gd_scene load_steps=17 format=3 uid="uid://cmnppyscfmns0"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_2nmyt"]
+[ext_resource type="Texture2D" uid="uid://dowpamgau65k6" path="res://Assets da aula/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="2_dlm3g"]
+[ext_resource type="Texture2D" uid="uid://b08d6ffh4gv2s" path="res://Assets da aula/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_wnbfk"]
+[ext_resource type="Texture2D" uid="uid://eub3d3dfdsxc" path="res://Assets da aula/Sprite Pack 2/2 - Mr. Mochi/Running (32 x 32).png" id="4_g74bx"]
+[ext_resource type="Texture2D" uid="uid://boq3gd214h24w" path="res://Assets da aula/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="5_ayhov"]
+[ext_resource type="AudioStream" uid="uid://dn87oo0g346ng" path="res://Sounds/jump_sfx.wav" id="6_5u0a0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtkc2"]
+atlas = ExtResource("2_dlm3g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tcsy"]
+atlas = ExtResource("2_dlm3g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vst7k"]
+atlas = ExtResource("4_g74bx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fenfj"]
+atlas = ExtResource("4_g74bx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3a43"]
+atlas = ExtResource("4_g74bx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl567"]
+atlas = ExtResource("4_g74bx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y272a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtkc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tcsy")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wnbfk")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vst7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fenfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3a43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl567")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ayhov")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtf1r"]
+size = Vector2(24, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ehty"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oijg6"]
+size = Vector2(16, 6)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(0, -16)
+collision_mask = 94
+script = ExtResource("1_2nmyt")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y272a")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.00324137
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_xtf1r")
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 132
+
+[node name="collision2hurt" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_0ehty")
+debug_color = Color(0.91355, 0.181326, 0.573012, 0.42)
+
+[node name="remote" type="RemoteTransform2D" parent="."]
+position = Vector2(0, 7)
+
+[node name="head_collider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="head_collision" type="CollisionShape2D" parent="head_collider"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_oijg6")
+debug_color = Color(0.589258, 0.37685, 1, 0.42)
+
+[node name="jump_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5u0a0")
+volume_db = -15.0
+pitch_scale = 1.5
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="head_collider" to="." method="_on_head_collider_body_entered"]

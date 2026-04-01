@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o5u65e6tey8p"]
+
+[ext_resource type="AudioStream" uid="uid://dv25dwriwe1ij" path="res://Sounds/break_sfx.wav" id="1_sutac"]
+
+[node name="destroy_sfx" type="AudioStreamPlayer"]
+stream = ExtResource("1_sutac")

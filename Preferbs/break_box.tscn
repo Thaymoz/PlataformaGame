@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://divxj2qlbf3d"]
+
+[ext_resource type="Script" path="res://Scripts/break_box.gd" id="1_j2ucp"]
+[ext_resource type="Texture2D" uid="uid://dan6ft1y64uk8" path="res://Assets da aula/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_u3o20"]
+[ext_resource type="AudioStream" uid="uid://bfkwev1fj7406" path="res://Sounds/hit_box.wav" id="3_btuqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa58s"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_fim3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_edw5k"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.8, 0.286275, 0.258824, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dusp"]
+_data = {
+"RESET": SubResource("Animation_fim3l"),
+"hit": SubResource("Animation_edw5k")
+}
+
+[node name="break-box" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_j2ucp")
+pieces = PackedStringArray("res://Assets da aula/Mini FX, Items & UI/brick-piece-01.png", "res://Assets da aula/Mini FX, Items & UI/brick-piece-02.png", "res://Assets da aula/Mini FX, Items & UI/brick-piece-03.png", "res://Assets da aula/Mini FX, Items & UI/brick-piece-04.png")
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("1_u3o20")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_wa58s")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3dusp")
+}
+
+[node name="spawn_coin" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="hit_block" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_btuqm")
+volume_db = 2.0

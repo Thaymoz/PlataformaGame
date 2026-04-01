@@ -1,0 +1,59 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cfm1awxanjuds"]
+
+[ext_resource type="FontFile" uid="uid://w4ifd2ph5gsr" path="res://Assets da aula/Mini FX, Items & UI/Fonts/RevMiniPixel.ttf" id="1_2px6d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs1i8"]
+bg_color = Color(1, 0.870588, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.282353, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s31ih"]
+bg_color = Color(1, 0.870588, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.282353, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ktvt"]
+bg_color = Color(1, 0.282353, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0, 0.0141665, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l74qx"]
+bg_color = Color(1, 0.870588, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.282353, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_2px6d")
+Button/styles/focus = SubResource("StyleBoxFlat_vs1i8")
+Button/styles/hover = SubResource("StyleBoxFlat_s31ih")
+Button/styles/normal = SubResource("StyleBoxFlat_3ktvt")
+Button/styles/pressed = SubResource("StyleBoxFlat_l74qx")

@@ -1,0 +1,216 @@
+[gd_scene load_steps=13 format=3 uid="uid://b7vyy3t6v3wtm"]
+
+[ext_resource type="Texture2D" uid="uid://bpumwr6hi8s7k" path="res://Assets da aula/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_1b6s7"]
+[ext_resource type="Script" path="res://Scripts/ground_enemy.gd" id="1_mpmf8"]
+[ext_resource type="Texture2D" uid="uid://5v2j3kkoicl8" path="res://Assets da aula/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="3_80x2t"]
+[ext_resource type="Texture2D" uid="uid://700wqo453axi" path="res://Assets da aula/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="4_rco7o"]
+[ext_resource type="PackedScene" uid="uid://biwtc3dn8howd" path="res://Preferbs/hitbox.tscn" id="5_ut6s8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn3or"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_i6n8e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_1b6s7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lftwx"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_80x2t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pyo5c"]
+resource_name = "standing"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_rco7o")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fdt7x"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_1b6s7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x70ni"]
+_data = {
+"RESET": SubResource("Animation_i6n8e"),
+"hurt": SubResource("Animation_lftwx"),
+"standing": SubResource("Animation_pyo5c"),
+"walk": SubResource("Animation_fdt7x")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0pxx"]
+size = Vector2(8, 2)
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enimes"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_mpmf8")
+
+[node name="texture" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_1b6s7")
+hframes = 2
+
+[node name="colision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qn3or")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../texture")
+libraries = {
+"": SubResource("AnimationLibrary_x70ni")
+}
+autoplay = "walk"
+speed_scale = 0.5
+
+[node name="wall detector" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-7, 0)
+collision_mask = 6
+
+[node name="hitbox" parent="." instance=ExtResource("5_ut6s8")]
+
+[node name="colision2hit" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_c0pxx")

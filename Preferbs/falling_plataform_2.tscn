@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2fysl05r5sh2"]
+
+[ext_resource type="Script" path="res://Scripts/falling_plataform_2.gd" id="1_4o6n3"]
+[ext_resource type="Texture2D" uid="uid://dan6ft1y64uk8" path="res://Assets da aula/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_5r5jc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvnep"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_q5tpm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w4abf"]
+resource_name = "shake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3hjy"]
+_data = {
+"RESET": SubResource("Animation_q5tpm"),
+"shake": SubResource("Animation_w4abf")
+}
+
+[node name="falling-plataform2" type="AnimatableBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_4o6n3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5r5jc")
+region_enabled = true
+region_rect = Rect2(144, 64, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mvnep")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i3hjy")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

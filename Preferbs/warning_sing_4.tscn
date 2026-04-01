@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgqx3vcsutftv"]
+
+[ext_resource type="Script" path="res://Scripts/warning_sing_4.gd" id="1_lgf07"]
+[ext_resource type="Texture2D" uid="uid://p1npkd7lrd6t" path="res://Assets da aula/Mini FX, Items & UI/Mini UI/Speech_Emotes (16 x 16).png" id="2_x7stn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlr4v"]
+
+[node name="warning_sing_4" type="Node2D"]
+script = ExtResource("1_lgf07")
+
+[node name="texture" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -18)
+texture = ExtResource("2_x7stn")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="area_sing" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="area_sing"]
+shape = SubResource("RectangleShape2D_qlr4v")
+
+[connection signal="body_entered" from="area_sing" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="area_sing" to="." method="_on_area_2d_body_exited"]
