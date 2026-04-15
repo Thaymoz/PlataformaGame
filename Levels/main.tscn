@@ -406,7 +406,7 @@ next_level = "res://Levels/world_2.tscn"
 position = Vector2(2474, 184)
 
 [node name="Player" parent="." unique_id=408990344 instance=ExtResource("3_i7wlf")]
-position = Vector2(60, 238)
+position = Vector2(2268, 76)
 
 [node name="BG" type="ParallaxBackground" parent="." unique_id=1266209830]
 
